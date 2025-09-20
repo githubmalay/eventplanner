@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilded Moments Planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Custom Styles --- */
+
+        /* General Body Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #555;
+            background-color: #fdfdfd;
+        }
+
+        /* Headings and Themed Text */
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .theme-color {
+            color: #c5a47e;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #c5a47e;
+        }
+
+                /* Hero Section */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1523438097201-512ae7d59c44?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Parallax Effect */
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* Custom Button */
+        .btn-custom {
+            background-color: #c5a47e;
+            border-color: #c5a47e;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #b3926c;
+            border-color: #b3926c;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+        .section-title {
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .service-card {
+            border: none;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: #c5a47e;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-details-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+
+        .service-details-list li {
+            margin-bottom: 10px;
+        }
+
+        .service-details-list i {
+            color: #c5a47e;
+            margin-right: 10px;
+        }
+
+
+        /* Gallery Section */
+        .gallery-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img img {
+            transition: transform 0.4s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Contact Section */
+        .contact-form .form-control {
+            border-radius: 5px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .contact-form .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(197, 164, 126, 0.25);
+            border-color: #c5a47e;
+        }
+        .contact-info i {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #c5a47e;
+            color: #fff;
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+            border-top: 1px solid #e7e7e7;
+        }
+        .social-icons a {
+            color: #555;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #c5a47e;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand theme-color" href="#">Gilded Moments</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="display-3">Gilded Moments Planner</h1>
+            <p class="lead">Crafting unforgettable memories, one perfect detail at a time. Your dream event begins here.
+            </p>
+            <a href="#contact" class="btn btn-custom">Plan Your Dream Event</a>
+        </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <h2 class="text-center section-title">About <span class="theme-color">Us</span></h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://placehold.co/600x400/c5a47e/fff?text=Our+Team" alt="Wedding Planners" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-3">Bringing Your Vision to Life</h3>
+                    <p>At Gilded Moments, we believe that every couple deserves a wedding that is a true reflection of their love story. With years of experience and a passion for perfection, our dedicated team works tirelessly to ensure every detail is flawless.</p>
+                    <p>From intimate gatherings to grand celebrations, we blend creativity with meticulous planning to create an experience that is both beautiful and stress-free. Let us handle the details, so you can cherish every moment of your special day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Our <span class="theme-color">Signature Services</span></h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-10 mb-4">
+                    <div class="service-card h-100">
+                        <i class="fas fa-ring service-icon"></i>
+                        <h3>Dream Wedding Planning</h3>
+                        <p class="px-3">We handle every facet of your special day, from the initial concept to the final farewell. Our comprehensive service ensures a seamless, stress-free celebration that perfectly captures your love story.</p>
+                        <ul class="service-details-list px-4">
+                            <li><i class="fas fa-check"></i>Full-Service Planning & Coordination</li>
+                            <li><i class="fas fa-check"></i>Venue Sourcing & Management</li>
+                            <li><i class="fas fa-check"></i>Creative Theme & Decor Design</li>
+                            <li><i class="fas fa-check"></i>Top-Tier Vendor Curation</li>
+                            <li><i class="fas fa-check"></i>Guest Management & Logistics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-10 mb-4">
+                    <div class="service-card h-100">
+                        <i class="fas fa-birthday-cake service-icon"></i>
+                        <h3>Bespoke Birthday Parties</h3>
+                        <p class="px-3">Celebrate life's milestones with a party that's as unique as you are. Whether it's a sweet sixteen or a 60th birthday bash, we design and execute events filled with joy, laughter, and unforgettable moments.</p>
+                        <ul class="service-details-list px-4">
+                            <li><i class="fas fa-check"></i>Customized Theme Development</li>
+                            <li><i class="fas fa-check"></i>Venue & Entertainment Booking</li>
+                            <li><i class="fas fa-check"></i>Personalized Decor & Styling</li>
+                            <li><i class="fas fa-check"></i>Catering & Dessert Coordination</li>
+                            <li><i class="fas fa-check"></i>On-Day Event Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <h2 class="text-center section-title">Our <span class="theme-color">Gallery</span></h2>
+            <div class="row g-4">
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/eee/333?text=Wedding+1" class="img-fluid" alt="Gallery Image 1"></div></div>
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/ddd/333?text=Wedding+2" class="img-fluid" alt="Gallery Image 2"></div></div>
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/eee/333?text=Wedding+3" class="img-fluid" alt="Gallery Image 3"></div></div>
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/ddd/333?text=Wedding+4" class="img-fluid" alt="Gallery Image 4"></div></div>
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/eee/333?text=Wedding+5" class="img-fluid" alt="Gallery Image 5"></div></div>
+                <div class="col-md-4"><div class="gallery-img"><img src="https://placehold.co/400x300/ddd/333?text=Wedding+6" class="img-fluid" alt="Gallery Image 6"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Get In <span class="theme-color">Touch</span></h2>
+            <div class="row">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-custom">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-map-marker-alt me-3 mt-1"></i>
+                            <div>
+                                <h5>Address</h5>
+                                <p>123 Elegance Ave, Celebration City, 45678</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-phone me-3 mt-1"></i>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+1 (234) 567-890</p>
+                            </div>
+                        </div>
+                         <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-envelope me-3 mt-1"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p>contact@gildedmoments.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Gilded Moments Planner. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Optional: Add a scroll effect to the navbar
+        const navbar = document.querySelector('.navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+    </script>
+
+</body>
+</html>
+
